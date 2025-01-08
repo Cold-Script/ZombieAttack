@@ -27,7 +27,7 @@ end)
 -- Script --
 Main:Toggle("Auto Collect Items", false, function(v)
 _G.AutoCollectItems = v
-while _G.AutoCollectItems and workspace.Powerups:FindFirstChild("Powerup") do
+while _G.AutoCollectItems do wait(0.25)
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Parent.Name == "Powerup" then
 v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
@@ -70,7 +70,6 @@ zombie.Handle.CanTouch = false
 end
 end
 HitboxZombie = workspace.enemies.ChildAdded:Connect(function()
-task.wait(0.5)
 for _,zombie in pairs(workspace:GetDescendants()) do
 if zombie.Parent.Name == "enemies" then
 zombie.HumanoidRootPart.Size = Vector3.new(_G.HitboxX or 15, _G.HitboxY or 15, _G.HitboxZ or 15)
@@ -137,9 +136,9 @@ game:GetService("RunService").RenderStepped:Connect(function()
 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v or 15
 end)
 end)
-Players:Slider("Field Of View",70,120,70, function(v)
+Players:Slider("HipHeight",2.5,10,2.5, function(v)
 game:GetService("RunService").RenderStepped:Connect(function()
-workspace.CurrentCamera.FieldOfView = v or 70
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v or 2.5
 end)
 end)
 
